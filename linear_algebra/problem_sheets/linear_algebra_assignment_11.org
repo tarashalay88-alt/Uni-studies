@@ -1,0 +1,543 @@
+#+title: Linear Algebra Assignment 11
+#+author: Taras Halay
+#+email: tarashalay88@gmail.com
+#+date: 05.06.2026
+#+options: toc:nil num:t tags:nil
+#+startup: overview latexpreview inlineimages
+#+latex_class_options: [11pt,a4paper]
+#+latex_header: \usepackage[margin=1in]{geometry}
+#+latex_header: \usepackage{amsmath,amssymb,mathtools}
+#+latex_header: \usepackage[T1]{fontenc}
+#+latex_header: \usepackage{lmodern}
+#+latex_header: \newcommand{\K}{\mathbb K}
+#+latex_header: \newcommand{\R}{\mathbb R}
+#+latex_header: \newcommand{\C}{\mathbb C}
+#+latex_header: \newcommand{\Id}{\operatorname{Id}}
+#+latex_header: \newcommand{\Span}{\operatorname{span}}
+#+latex_header: \newcommand{\rank}{\operatorname{rank}}
+#+latex_header: \newcommand{\adj}{\operatorname{adj}}
+
+* Exercise 4.9
+
+** Statement
+Let \(A,B\in\K^{n\times n}\) be two matrices and let \(p\le n\). The two matrices are defined by blocks as
+\[
+A=
+\begin{pmatrix}
+A_{1,1} & A_{1,2}\\
+A_{2,1} & A_{2,2}
+\end{pmatrix},
+\qquad
+B=
+\begin{pmatrix}
+B_{1,1} & B_{1,2}\\
+B_{2,1} & B_{2,2}
+\end{pmatrix},
+\]
+with
+\[
+A_{1,1}\in\K^{p\times p},\quad
+A_{1,2}\in\K^{p\times(n-p)},\quad
+A_{2,1}\in\K^{(n-p)\times p},
+\quad
+A_{2,2}\in\K^{(n-p)\times(n-p)}.
+\]
+Same decomposition seem to hold for \(B\).
+
+(i) Prove that
+\[
+AB=
+\begin{pmatrix}
+A_{1,1}B_{1,1}+A_{1,2}B_{2,1} &
+A_{1,1}B_{1,2}+A_{1,2}B_{2,2}\\
+A_{2,1}B_{1,1}+A_{2,2}B_{2,1} &
+A_{2,1}B_{1,2}+A_{2,2}B_{2,2}
+\end{pmatrix}.
+\]
+
+(ii) Show that, if \(A_{2,1}=0\), then
+\[
+\det A=\det(A_{1,1})\det(A_{2,2}).
+\]
+
+(iii) Show that, if \(\det A_{1,1}\ne0\), then
+\[
+\det A=\det(A_{1,1})
+\det(A_{2,2}-A_{2,1}A_{1,1}^{-1}A_{1,2}).
+\]
+Indication: The matrix
+\[
+M=
+\begin{pmatrix}
+\Id_p&0\\
+-A_{2,1}A_{1,1}^{-1}&\Id_{n-p}
+\end{pmatrix}
+\]
+may be of help.
+
+** Solution
+
+Let \(A,B\in\K^{n\times n}\), \(p\le n\). Two matrices are defined by blocks as
+\[
+A=
+\begin{pmatrix}
+A_{1,1} & A_{1,2}\\
+A_{2,1} & A_{2,2}
+\end{pmatrix},
+\qquad
+B=
+\begin{pmatrix}
+B_{1,1} & B_{1,2}\\
+B_{2,1} & B_{2,2}
+\end{pmatrix}.
+\]
+With
+\[
+A_{1,1}\in\K^{p\times p},\quad
+A_{1,2}\in\K^{p\times(n-p)},
+\]
+\[
+A_{2,1}\in\K^{(n-p)\times p},\quad
+A_{2,2}\in\K^{(n-p)\times(n-p)}.
+\]
+Same decomposition seem to hold for \(B\).
+
+*** (i) Prove that
+\[
+AB=
+\begin{pmatrix}
+A_{1,1} & A_{1,2}\\
+A_{2,1} & A_{2,2}
+\end{pmatrix}
+\begin{pmatrix}
+B_{1,1} & B_{1,2}\\
+B_{2,1} & B_{2,2}
+\end{pmatrix}
+\]
+\[
+=
+\begin{pmatrix}
+A_{1,1}B_{1,1}+A_{1,2}B_{2,1} &
+A_{1,1}B_{1,2}+A_{1,2}B_{2,2}\\
+A_{2,1}B_{1,1}+A_{2,2}B_{2,1} &
+A_{2,1}B_{1,2}+A_{2,2}B_{2,2}
+\end{pmatrix}.
+\]
+Now check dimensions:
+\[
+\dim(A_{1,1}B_{1,1}+A_{1,2}B_{2,1})
+=
+(p\times p)(p\times p)+(p\times(n-p))((n-p)\times p)
+=
+p\times p.
+\]
+\[
+\dim(A_{1,1}B_{1,2}+A_{1,2}B_{2,2})
+=
+(p\times p)(p\times(n-p))+
+(p\times(n-p))((n-p)\times(n-p))
+=
+p\times(n-p).
+\]
+\[
+\dim(A_{2,1}B_{1,1}+A_{2,2}B_{2,1})
+=
+((n-p)\times p)(p\times p)+((n-p)\times(n-p))((n-p)\times p)
+=
+(n-p)\times p.
+\]
+\[
+\dim(A_{2,1}B_{1,2}+A_{2,2}B_{2,2})
+=
+((n-p)\times p)(p\times(n-p))
++
+((n-p)\times(n-p))((n-p)\times(n-p))
+=
+(n-p)\times(n-p).
+\]
+As we can see, dimensions match, and \(AB\in\K^{n\times n}\).
+
+*** (ii) Show that, if \(A_{2,1}=0\), then
+\[
+\det A=\det(A_{1,1})\det(A_{2,2}).
+\]
+If \(A_{2,1}=0\), then
+\[
+A=
+\begin{pmatrix}
+A_{1,1} & A_{1,2}\\
+0 & A_{2,2}
+\end{pmatrix}.
+\]
+By the Leibniz formula,
+\[
+\det A=\sum_{\sigma\in S_n}\varepsilon(\sigma)\prod_{i=1}^{n}a_{i,\sigma(i)}.
+\]
+Since \(\dim(A_{2,1})=(n-p)\times p\), for rows \(i>p\), if \(\sigma(i)\le p\), then
+\[
+a_{i,\sigma(i)}=0.
+\]
+So, only permutations that will survive should map all rows \(p+1,\ldots,n\) to columns \(p+1,\ldots,n\),
+i.e.
+\[
+\sigma(\{p+1,\ldots,n\})=\{p+1,\ldots,n\}
+\]
+and in such case rows \(1,\ldots,p\) will be mapped to columns \(1,\ldots,p\), i.e.
+\[
+\sigma(\{1,\ldots,p\})=\{1,\ldots,p\}.
+\]
+Then we split \(\sigma=(\sigma_1,\sigma_2)\), and
+\[
+\varepsilon(\sigma)=\varepsilon(\sigma_1)\varepsilon(\sigma_2).
+\]
+Hence
+\[
+\sum_{\sigma\in S_n}\varepsilon(\sigma)\prod_{i=1}^{n}a_{i,\sigma(i)}
+=
+\left(\sum_{\sigma_1\in S_p}\varepsilon(\sigma_1)
+\prod_{i=1}^{p}a_{i,\sigma_1(i)}
+\right)
+\left(\sum_{\sigma_2\in S_{n-p}}\varepsilon(\sigma_2)
+\prod_{s=p+1}^{n}a_{s,\sigma_2(s)}
+\right).
+\]
+The first sum is \(\det(A_{1,1})\), and the second one is \(\det(A_{2,2})\).
+Hence
+\[
+\det(A)=\det(A_{1,1})\det(A_{2,2}).
+\]
+
+*** (iii) Show that, if \(\det A_{1,1}\ne0\),
+\[
+\det A=
+\det(A_{1,1})
+\det(A_{2,2}-A_{2,1}A_{1,1}^{-1}A_{1,2}).
+\]
+Let
+\[
+M=
+\begin{pmatrix}
+\Id_p&0\\
+-A_{2,1}A_{1,1}^{-1}&\Id_{n-p}
+\end{pmatrix}.
+\]
+Since
+\[
+\det(M)=\det(M^T),
+\]
+and \(M^T\) is block upper triangular, by previous point
+\[
+\det(M)=\det(\Id_p)\det(\Id_{n-p})=1.
+\]
+Let us multiply \(M\cdot A\). By lemma about matrix product,
+\[
+\det(MA)=\det(M)\det(A)=\det(A).
+\]
+Then by point (i)
+\[
+MA=
+\begin{pmatrix}
+A_{1,1}&A_{1,2}\\
+-A_{2,1}A_{1,1}^{-1}A_{1,1}+A_{2,1}
+&
+-A_{2,1}A_{1,1}^{-1}A_{1,2}+A_{2,2}
+\end{pmatrix}
+\]
+\[
+=
+\begin{pmatrix}
+A_{1,1}&A_{1,2}\\
+0&A_{2,2}-A_{2,1}A_{1,1}^{-1}A_{1,2}
+\end{pmatrix}.
+\]
+By point (ii),
+\[
+\det(MA)=
+\det(A_{1,1})
+\det(A_{2,2}-A_{2,1}A_{1,1}^{-1}A_{1,2})
+=
+\det(A),
+\]
+proving desired property.
+
+* Exercise 4.13
+
+** Statement
+Let \(A\in\K^{n\times n}\) with \(n\in\mathbb N\), with coefficients \(a_{ij}\), \(1\le i,j\le n\). For each pair of indices \((i,j)\), define
+\[
+C_{ij}=(-1)^{i+j}\det(A_{ij}^{*}),
+\]
+where \(A_{ij}^{*}\) is the matrix obtained by deleting row \(i\) and column \(j\).
+Then
+\[
+\adj(A)=
+\begin{pmatrix}
+C_{11}&\cdots&C_{n1}\\
+\vdots&\ddots&\vdots\\
+C_{1n}&\cdots&C_{nn}
+\end{pmatrix}.
+\]
+
+(i) Prove that
+\[
+A\adj(A)=\det(A)I_n.
+\]
+
+(ii) Conclude that when \(A\) is invertible, we have the following formula for the inverse matrix:
+\[
+A^{-1}=\frac{1}{\det(A)}\adj(A).
+\]
+What is \(\det(\adj(A))\)?
+
+** Solution
+
+Let \(A\in\K^{n\times n}\) with \(n\in\mathbb N\), with \(a_{ij}\), \(1\le i,j\le n\). For each pair of indices \((i,j)\), we define
+\[
+C_{ij}=(-1)^{i+j}\det(A_{ij}^{*}).
+\]
+Then
+\[
+\adj(A)=
+\begin{pmatrix}
+C_{11}&\cdots&C_{n1}\\
+\vdots&\ddots&\vdots\\
+C_{1n}&\cdots&C_{nn}
+\end{pmatrix}.
+\]
+
+*** (i) Let \(P=A\cdot\adj(A)\).
+\[
+p_{ii}=\sum_{j=1}^{n}a_{ij}C_{ij}
+=
+\sum_{j=1}^{n}a_{ij}(-1)^{i+j}\det(A_{ij}^{*})
+=
+\det A,
+\qquad
+\forall i\in\{1,\ldots,n\}.
+\]
+
+*** (ii) \(i\ne k\).
+\[
+p_{ik}=\sum_{s=1}^{n}a_{is}C_{ks}
+=
+\sum_{s=1}^{n}a_{is}(-1)^{s+k}\det(A_{ks}^{*}).
+\]
+But this is exactly the Laplace expansion of a matrix when \(R_i=R_k\). Let
+\[
+B=
+\begin{pmatrix}
+a_{11}&\cdots&a_{1n}\\
+\vdots&&\vdots\\
+a_{i1}&\cdots&a_{in}\\
+a_{i1}&\cdots&a_{in}\\
+\vdots&&\vdots\\
+a_{n1}&\cdots&a_{nn}
+\end{pmatrix},
+\]
+so \(R_i=R_k\), i.e. row \(k\) replaced by row \(i\). Then
+\[
+\sum_{s=1}^{n}a_{is}(-1)^{s+k}\det(A_{ks}^{*})
+=
+\sum_{s=1}^{n}b_{ks}(-1)^{s+k}\det(B_{ks}^{*})
+=
+\det(B)=0
+\]
+by alternating property of determinant. Hence
+\[
+p_{ik}=0\qquad \forall i\ne k.
+\]
+Since
+\[
+A\adj(A)=\det(A)I_n,
+\]
+now \(\adj(A)A=\det(A)I_n\) similarly by the same logic as in previous point.
+
+If \(\det A\ne0\), then
+\[
+A\cdot\frac1{\det A}\adj(A)
+=
+\frac1{\det A}\det(A)I=I.
+\]
+Hence
+\[
+A^{-1}=\frac1{\det A}\adj(A).
+\]
+Then
+\[
+\adj(A)=A^{-1}\det(A).
+\]
+Therefore
+\[
+\det(\adj(A))
+=
+\det(A^{-1}\det(A))
+=
+(\det A)^n\det(A^{-1})
+=
+\frac{(\det A)^n}{\det A}
+=
+(\det A)^{n-1}.
+\]
+
+* Exercise 5.3
+
+** Statement
+Exercise 5.3. (Shift of spectrum)
+
+Let \(A\in\K^{n\times n}\) and \(\alpha\in\K\). Show that \(\alpha I_n+A\) is diagonalizable if and only if \(A\) is diagonalizable. What are the eigenvalues and associated eigenspaces of \(\alpha I_n+A\)?
+
+** Solution
+
+\(\Rightarrow\) Assume \(A\) is diagonalizable. Then there exists a basis \(E\) made of eigenvectors of \(A\),
+\[
+E=\{e_1,\ldots,e_n\},
+\]
+and eigenvalues \(\lambda_1,\ldots,\lambda_n\), not necessarily distinct. Then consider
+\[
+(A+\alpha I_n)e_i
+=
+Ae_i+\alpha e_i
+=
+\lambda_i e_i+\alpha e_i
+=
+(\lambda_i+\alpha)e_i.
+\]
+Then \(e_1,\ldots,e_n\) are eigenvectors of \(A+\alpha I_n\), and since those vectors are linearly independent, they form an eigenbasis of \(A+\alpha I_n\), with eigenvalues
+\[
+\lambda_1+\alpha,\ldots,\lambda_n+\alpha.
+\]
+Hence \(A+\alpha I_n\) is diagonalizable.
+
+\(\Leftarrow\) Assume \(A+\alpha I_n\) is diagonalizable. Then let
+\[
+B=A+\alpha I_n.
+\]
+\(B\) is diagonalizable. Let \(b=-\alpha\). Then
+\[
+B+bI_n=A.
+\]
+So we reduced our problem to previous implication. Hence \(A\) is diagonalizable.
+
+The eigenspaces are the same, only the eigenvalues shift:
+\[
+V_{\lambda}^{A}=V_{\lambda+\alpha}^{A+\alpha I_n}.
+\]
+
+* Exercise 5.5
+
+** Statement
+Let \(A\) be the \(n\times n\) matrix defined by
+\[
+A=
+\begin{pmatrix}
+a&1&1&\cdots&1\\
+1&a&1&\cdots&1\\
+1&1&a&\cdots&1\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+1&1&1&\cdots&a
+\end{pmatrix}.
+\]
+Is \(A\) diagonalizable over \(\K\)? If so, obtain the diagonalized form. Use the result of Exercise 4.14 and Exercise 5.3.
+
+** Solution
+
+Using the result of ex. 4.14, consider
+\[
+B=
+\begin{pmatrix}
+1&1&1&\cdots&1\\
+1&1&1&\cdots&1\\
+1&1&1&\cdots&1\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+1&1&1&\cdots&1
+\end{pmatrix}.
+\]
+Then
+\[
+A=B+(a-1)I.
+\]
+Using exercise 4.14 result, i.e.
+\[
+\det(w-\lambda e_1,\ldots,w-\lambda e_n)
+=
+(-\lambda)^n+s(-\lambda)^{n-1},
+\qquad
+s=\sum_{i=1}^{n}w_i,
+\]
+where here \(w=(1,\ldots,1)^T\) and \(s=n\), hence applying this result to our problem,
+\[
+\det(B-\lambda I)
+=
+(-\lambda)^n+n(-\lambda)^{n-1}.
+\]
+Up to the same sign convention for the characteristic polynomial, this gives the roots
+\[
+\lambda=n,\qquad \lambda=0.
+\]
+So, eigenvalues are
+\[
+\lambda_1=n,\qquad \lambda_2=0,
+\]
+with
+\[
+m_n=1,\qquad m_0=n-1.
+\]
+
+\(V_0^B\) is exactly the nullity of our matrix. Then by rank-nullity theorem
+\[
+\dim(V_0^B)=n-1,
+\]
+and
+\[
+V_n^B=\operatorname{span}
+\left\{
+\begin{pmatrix}
+1\\
+1\\
+\vdots\\
+1
+\end{pmatrix}
+\right\}
+\quad\Rightarrow\quad
+\dim(V_n^B)=1.
+\]
+Hence algebraic multiplicities match geometric ones. Hence \(B\) is diagonalizable, with
+\[
+D_B=
+\begin{pmatrix}
+n&0&\cdots&0\\
+0&0&\cdots&0\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&0
+\end{pmatrix}.
+\]
+By ex. 5.3,
+\[
+A=B+(a-1)I,
+\]
+and eigenvalues of \(A=B+(a-1)I\) are
+\[
+\mu_1=n+(a-1)
+\]
+with
+\[
+m_{n+a-1}=1,
+\]
+and
+\[
+\mu_2=a-1
+\]
+with
+\[
+m_{a-1}=n-1.
+\]
+Then
+\[
+D_A=
+\begin{pmatrix}
+n+a-1&0&\cdots&0\\
+0&a-1&\cdots&0\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&a-1
+\end{pmatrix}.
+\]
