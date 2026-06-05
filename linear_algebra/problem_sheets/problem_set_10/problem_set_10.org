@@ -1,0 +1,5 @@
+#+title: Problem Set 10
+#+author: Taras Halay
+#+email: tarashalay88@gmail.com
+#+date: 28.05.2026
+#+startup: overview latexpreview inlineimages
