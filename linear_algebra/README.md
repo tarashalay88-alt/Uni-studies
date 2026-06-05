@@ -1,11 +1,11 @@
 # Linear Algebra
 
-Focus: proof generation, structural understanding, and exam-style arbitrary statements.
+Focus: proof generation, concept understanding, and exam-style arbitrary statements.
 
 ## Folders
 
-- `theory/` — definitions, theorem cards, concept maps.
+- `theory/` — definitions, theorems, theorems proofs.
 - `problem_sheets/` — solved university/Oxford-style problems.
 - `coding/` — computational checks, matrix experiments, visualizations.
-- `proof_training/` — daily proof drills, counterexamples, timed blocks.
-- `exam_prep/` — final checklists, mock exams, compressed summaries.
+- `proof_training/` — proof exercises, counterexamples, timed blocks.
+- `exam_prep/` — treory revision , mock exams, compressed summaries.
