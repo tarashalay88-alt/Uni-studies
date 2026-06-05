@@ -4,7 +4,7 @@ This folder contains polished solutions for Problem Set 10.
 
 ## Files
 
-- `main.tex` -- LaTeX source file.
+- `problem_set_10.org` -- LaTeX source file.
 - `problem_set_10.pdf` -- compiled PDF version.
 
 ## Exercises
