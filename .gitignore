@@ -1,0 +1,26 @@
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Julia
+*.ji
+
+# Build outputs
+build/
+dist/
+*.aux
+*.log
+*.out
+*.toc
+*.pdf
+
+# Private / copyrighted material
+official_lecture_notes/
+private_materials/
