@@ -5,7 +5,7 @@ Focus: proof generation, concept understanding, and exam-style arbitrary stateme
 ## Folders
 
 - `theory/` — definitions, theorems, theorems proofs.
-- `problem_sheets/` — solved university/Oxford-style problems.
+- `problem_sheets/` — PS classes assignments
 - `coding/` — computational checks, matrix experiments, visualizations.
 - `proof_training/` — proof exercises, counterexamples, timed blocks.
 - `exam_prep/` — treory revision , mock exams, compressed summaries.
