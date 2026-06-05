@@ -1,6 +1,831 @@
 #+title: Problem Set 10
 #+author: Taras Halay
+#+email: tarashalay88@gmail.com
 #+date: 28.05.2026
+#+options: toc:nil num:t tags:nil
 #+startup: overview latexpreview inlineimages
+#+latex_header: \usepackage{amsmath,amssymb,mathtools}
+#+latex_header: \newcommand{\R}{\mathbb{R}}
+#+latex_header: \newcommand{\C}{\mathbb{C}}
+#+latex_header: \newcommand{\K}{\mathbb{K}}
+#+latex_header: \newcommand{\Span}{\operatorname{span}}
+#+latex_header: \newcommand{\rank}{\operatorname{rank}}
 
-* Placeholder
+* Exercise 3.17
+
+** Statement
+Exercise 3.17. (Application of orthogonal projection for a minimization problem)
+
+Our goal in this exercise is to approximate a cubic polynomial in a given interval using only polynomials of degree less or equal to 2. Specifically, we wish to find the coefficients of the polynomial \(Q(x)=ax^2+bx+c\) such that the value
+\[
+J[Q]=\int_{-1}^{1}[x^3-Q(x)]^2\,dx
+\]
+is minimized.
+
+(i) Let \(E=\R_3[X]\) be the real polynomials with degree less or equal to 3. We define the inner product
+\[
+\omega(f,g)=\int_{-1}^{1}p(x)q(x)\,dx.
+\]
+Give the matrix representation \([\omega]_{EE}\), where \(E=\{1,x,x^2,x^3\}\) is the standard basis on \(E\).
+
+(ii) Let \(R(x)=x^3\), express \(J[Q(x)]\) in terms of the norm \(\|\cdot\|\) induced by the inner product.
+
+(iii) By definition we know that the polynomial \(Q\) belongs to the subspace \(F=\R_2[X]\) of real polynomials of degree less or equal to 2. Let \(F=\{1,X,X^2\}\) be the standard basis of \(F\), find an orthonormal basis \(U\) in \(F\) with respect to the inner product \(\omega(\cdot,\cdot)\) by applying Gram-Schmidt orthogonalization on the basis \(E\).
+
+(iv) With the orthogonal basis \(U\), apply the result from ex. 2.14 to obtain the projection of \(R\) onto the subspace \(F\). Is this polynomial the one that minimizes \(J[Q]\)?
+
+** Solution
+
+*** (i)
+Let \(E = \R_3[X]\) be the real polynomials of degree \(\le 3\). Define
+\[
+\omega(p, q)=\int_{-1}^{1}p(x)q(x)\,dx.
+\]
+Let
+\[
+E=\{1,x,x^2,x^3\}
+\]
+be the standard basis of \(E\). Then
+\[
+[\omega]_{EE}=
+\begin{pmatrix}
+\omega(1,1)&\omega(1,x)&\omega(1,x^2)&\omega(1,x^3)\\
+\omega(x,1)&\omega(x,x)&\omega(x,x^2)&\omega(x,x^3)\\
+\omega(x^2,1)&\omega(x^2,x)&\omega(x^2,x^2)&\omega(x^2,x^3)\\
+\omega(x^3,1)&\omega(x^3,x)&\omega(x^3,x^2)&\omega(x^3,x^3)
+\end{pmatrix}.
+\]
+So
+\[
+([\omega]_{EE})_{i,j}
+=\omega(x^{i-1},x^{j-1})
+=\int_{-1}^{1}x^{i+j-2}\,dx
+=\left.\frac{x^{i+j-1}}{i+j-1}\right|_{-1}^{1}.
+\]
+The integral is zero if \(i+j-1\) is even, i.e. if \(i+j\) is odd. If \(i+j\) is even, then
+\[
+\int_{-1}^{1}x^{i+j-2}\,dx=\frac{2}{i+j-1}.
+\]
+Therefore
+\[
+[\omega]_{EE}=
+\begin{pmatrix}
+2&0&\frac23&0\\
+0&\frac23&0&\frac25\\
+\frac23&0&\frac25&0\\
+0&\frac25&0&\frac27
+\end{pmatrix}.
+\]
+
+*** (ii)
+Let \(R(x)=x^3\). Then
+\[
+J[Q(x)]=\omega(x^3-Q(x),x^3-Q(x))=\|x^3-Q(x)\|^2.
+\]
+
+*** (iii)
+\[
+F=\{1,x,x^2\}.
+\]
+We apply Gram-Schmidt.
+\[
+u_1=\frac{1}{\|1\|_\omega}=\frac{1}{\sqrt2}.
+\]
+Furthermore,
+\[
+u_2=\frac{x-\omega(x,u_1)u_1}{\|x-\omega(x,u_1)u_1\|_\omega}.
+\]
+Since \(\omega(x,u_1)=0\), we get
+\[
+u_2=\frac{x}{\|x\|_\omega}
+=\frac{x}{\sqrt{2/3}}
+=\frac{\sqrt3}{\sqrt2}x.
+\]
+Now
+\[
+u_3=
+\frac{x^2-\sum_{i=1}^{2}\omega(x^2,u_i)u_i}
+{\left\|x^2-\sum_{i=1}^{2}\omega(x^2,u_i)u_i\right\|_\omega}.
+\]
+We have
+\[
+\omega(x^2,u_1)u_1
+=
+\left(\int_{-1}^{1}x^2\frac{1}{\sqrt2}\,dx\right)\frac{1}{\sqrt2}
+=
+\frac13,
+\qquad
+\omega(x^2,u_2)u_2=0.
+\]
+Thus
+\[
+u_3=\frac{x^2-\frac13}{\left\|x^2-\frac13\right\|_\omega}.
+\]
+Also
+\begin{align*}
+\left\|x^2-\frac13\right\|_\omega^2
+&=\omega\left(x^2-\frac13,x^2-\frac13\right)\\
+&=\int_{-1}^{1}\left(x^2-\frac13\right)^2dx\\
+&=\int_{-1}^{1}\left(x^4-\frac23x^2+\frac19\right)dx
+=\frac25-\frac49+\frac29=\frac{8}{45}.
+\end{align*}
+Therefore
+\[
+u_3=\frac{x^2-\frac13}{\sqrt{8/45}}.
+\]
+So
+\[
+U=
+\left\{
+\frac1{\sqrt2},
+\frac{\sqrt3}{\sqrt2}x,
+\frac{x^2-\frac13}{\sqrt{8/45}}
+\right\}.
+\]
+
+*** (iv)
+Since \(U\) is normalized,
+\[
+P_F(R)=\sum_{i=1}^{3}\langle R,u_i\rangle u_i.
+\]
+We note that
+\[
+\langle x^3,u_1\rangle=0,\qquad \langle x^3,u_3\rangle=0,
+\]
+because odd powers are out of the integral. So
+\[
+P_F(R)=\omega\left(x^3,\frac{\sqrt3}{\sqrt2}x\right)\frac{\sqrt3}{\sqrt2}x.
+\]
+Hence
+\[
+P_F(R)=
+\frac{\sqrt3}{\sqrt2}\int_{-1}^{1}x^4\,dx\cdot\frac{\sqrt3}{\sqrt2}x
+=
+\frac32\cdot\frac25x
+=
+\frac35x.
+\]
+Let us check minimization:
+\begin{align*}
+\omega\left(x^3-\frac35x,x^3-\frac35x\right)
+&=
+\int_{-1}^{1}\left(x^3-\frac35x\right)^2dx\\
+&=
+\int_{-1}^{1}\left(x^6-\frac65x^4+\frac9{25}x^2\right)dx
+=
+\frac27-\frac65\cdot\frac25+\frac9{25}\cdot\frac23
+=
+\frac8{175}.
+\end{align*}
+By this task we reduce our question to
+\[
+\int_{-1}^{1}(x^3-Q(x))^2dx=\|x^3-Q\|^2,
+\]
+which is least squares. We need to minimize it, and as it turns out
+\[
+Q=P_F(x^3).
+\]
+Why not using normal distance? Because now
+\[
+\|p-q\|^2=\int_{-1}^{1}(p-q)^2dx
+\]
+means that if we are close to \(x^3\) on the most of interval, the norm is tiny. If it differs throughout most of interval, the norm is huge.
+
+Why projection? If \(Q^*\) is the best approximation in \(F\), then
+\[
+x^3-Q^*\perp F,
+\]
+which tells
+\[
+\langle x^3-Q^*,R\rangle=0,\qquad \forall R\in\R_2[X].
+\]
+So, if our \(x^3\in\R_3[X]\), and we are only allowed to approximate it by \(Q\in\R_2[X]\), the closest point is where the perpendicular lies. The theorem from the notes says that in any inner-product space, if \(v\) is a vector, then the best approximation of \(v\) in a subspace \(F\) is \(\operatorname{proj}_F(v)\).
+
+* Exercise 4.7
+
+** Statement
+Exercise 4.7. (Vandermonde Matrix and Vandermonde Polynomial)
+
+Let \(n,m\in\mathbb N\) and \(x=(x_0,x_1,\dots,x_m)\in\K^{m+1}\), we define the Vandermonde matrix as the \(\K^{(m+1)\times(n+1)}\) matrix
+\[
+V(x)=
+\begin{pmatrix}
+1&x_0&x_0^2&\cdots&x_0^n\\
+1&x_1&x_1^2&\cdots&x_1^n\\
+1&x_2&x_2^2&\cdots&x_2^n\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+1&x_m&x_m^2&\cdots&x_m^n
+\end{pmatrix},
+\]
+where \(x_j^k\) denotes the \(k\)-th power of the scalar \(x_j\).
+
+In the following parts we let \(n=m\).
+
+(i) Prove that \(\det V(x)=0\) if and only if \(x_i=x_j\) for some \(i\ne j\).
+
+(ii) Using the previous result, show that \(\det V(x)\) is divisible by \(x_i-x_j\) for all \(0\le i<j\le n\).
+
+(iii) Using the previous result and by comparing the degree of \(\prod_{0\le i<j\le m}(x_j-x_i)\) and \(\det V(x)\), arrive at the result
+\[
+\det V(x)=C\cdot\prod_{0\le i<j\le m}(x_j-x_i),
+\]
+where \(C\in\K\) is some scalar.
+
+(iv) Conclude that \(C=1\), thus
+\[
+\det V(x)=\prod_{0\le i<j\le m}(x_j-x_i).
+\]
+
+** Solution
+Let \(n,m\in\mathbb N\), \(x=(x_0,x_1,\ldots,x_m)\in\K^{m+1}\). We define the Vandermonde matrix as
+\[
+V(x)=
+\begin{pmatrix}
+1&x_0&x_0^2&\cdots&x_0^n\\
+1&x_1&x_1^2&\cdots&x_1^n\\
+1&x_2&x_2^2&\cdots&x_2^n\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+1&x_m&x_m^2&\cdots&x_m^n
+\end{pmatrix}.
+\]
+In the following parts \(n=m\).
+
+*** (i) Prove \(\det V(x)=0\) iff \(x_i=x_j\) for some \(i\ne j\).
+Let us assume that \(i,j\) are such that \(x_i=x_j\). Then row \(R_i\) equals row \(R_j\):
+\[
+R_i=(1,x_i,x_i^2,\ldots,x_i^n)=(1,x_j,x_j^2,\ldots,x_j^n)=R_j.
+\]
+So \(R_i=R_j\) for \(i\ne j\). By the alternating property of determinant,
+\[
+\det V(x)=0.
+\]
+Assume now that \(\det V(x)=0\). Then \(\rank V(x)<n+1\), hence the columns are linearly dependent. Then there exists
+\[
+(a_0,\ldots,a_n)^T\ne 0
+\]
+such that
+\[
+V(x)
+\begin{pmatrix}
+a_0\\
+\vdots\\
+a_n
+\end{pmatrix}
+=0.
+\]
+Then, for \(r=0,\ldots,n\),
+\[
+a_0+a_1x_r+\cdots+a_nx_r^n=0.
+\]
+Define
+\[
+p(t)=a_0+a_1t+\cdots+a_nt^n.
+\]
+This polynomial is not the zero polynomial, and it has roots \(x_0,\ldots,x_n\). Since \(\deg p\le n\), it cannot have \(n+1\) distinct roots. Hence
+\[
+x_i=x_j
+\]
+for some \(i\ne j\).
+
+*** (ii) Show that \(\det V(x)\) is divisible by \(x_i-x_j\) for \(0\le i<j\le n\).
+Let us focus on \(x_i,x_j\) such that \(x_i=x_j\). By the previous point,
+\[
+\det V(x)=0.
+\]
+Consider \(\det V(x)\) as a polynomial in the variable \(x_i\). Since it vanishes at \(x_i=x_j\), by the factor theorem
+\[
+x_i-x_j\mid \det V(x).
+\]
+Equivalently, up to sign,
+\[
+x_j-x_i\mid \det V(x).
+\]
+Therefore, for every pair \((i,j)\), the factor \(x_j-x_i\) divides \(\det V(x)\).
+
+*** (iii) We now prove the formula for the determinant.
+By the Leibniz formula,
+\[
+\det V(x)=\sum_{\sigma\in S_{n+1}}\operatorname{sgn}(\sigma)\prod_{r=0}^{n}x_r^{\sigma(r)}.
+\]
+So every term has the form
+\[
+x_0^{\sigma(0)}x_1^{\sigma(1)}\cdots x_n^{\sigma(n)}.
+\]
+The degree of each term is
+\[
+\deg\left(\prod_{r=0}^{n}x_r^{\sigma(r)}\right)
+=
+\sum_{r=0}^{n}\sigma(r)
+=
+0+1+\cdots+n
+=
+\frac{n(n+1)}2.
+\]
+Since then we just sum up the terms,
+\[
+\deg(\det V(x))\le \frac{n(n+1)}2.
+\]
+Let us inspect the degree of
+\[
+\prod_{0\le i<j\le n}(x_j-x_i).
+\]
+Since \(\deg(x_j-x_i)=1\), we add up degrees in the product. So we need to count the number of factors, which is exactly the number of pairs \((i,j)\) with \(0\le i<j\le n\). This is
+\[
+\binom{n+1}{2}=\frac{n(n+1)}2.
+\]
+Hence
+\[
+\deg\left(\prod_{0\le i<j\le n}(x_j-x_i)\right)=\frac{n(n+1)}2.
+\]
+From the previous point the product divides \(\det V(x)\). Since both degrees are equal, there exists a constant \(C\in\K\) such that
+\[
+\det V(x)=C\prod_{0\le i<j\le n}(x_j-x_i).
+\]
+Since we know that \(C\in\K\) already, it is sufficient to compare the coefficient of one term. Let us choose
+\[
+x_0^0x_1^1\cdots x_n^n.
+\]
+In the Leibniz formula this term comes from the identity permutation. The signature of the identity permutation is 1, so the coefficient of
+\[
+x_0^0x_1^1\cdots x_n^n
+\]
+is 1.
+
+In the product
+\[
+\prod_{0\le i<j\le n}(x_j-x_i),
+\]
+choose \(x_j\) from every factor. Then we exactly get the term
+\[
+x_0^0x_1^1\cdots x_n^n.
+\]
+Since every chosen term has coefficient 1, the coefficient of the whole monomial is also 1. Thus \(C=1\). Therefore
+\[
+\det V(x)=\prod_{0\le i<j\le n}(x_j-x_i).
+\]
+
+* Exercise 5.1
+
+** Statement
+Exercise 5.1. Let
+\[
+A=
+\begin{pmatrix}
+3&0&-1\\
+2&4&2\\
+-1&0&3
+\end{pmatrix}
+\qquad\text{and}\qquad
+B=
+\begin{pmatrix}
+0&0&-8\\
+0&2&0\\
+4&0&12
+\end{pmatrix}.
+\]
+1. Compute the characteristic polynomial of \(A\) and \(B\), and find their eigenvalues.
+
+2. Find the eigensubspaces associated to each eigenvalue.
+
+3. Are the matrices diagonalizable?
+
+4. Compute \(A^n\) and \(B^n\) for \(n\in\mathbb N\).
+
+** Solution
+Let
+\[
+A=
+\begin{pmatrix}
+3&0&-1\\
+2&4&2\\
+-1&0&3
+\end{pmatrix},
+\qquad
+B=
+\begin{pmatrix}
+0&0&-8\\
+0&2&0\\
+4&0&12
+\end{pmatrix}.
+\]
+
+** Matrix A
+
+*** (i) We compute the characteristic polynomial:
+\[
+A-\lambda I=
+\begin{pmatrix}
+3-\lambda&0&-1\\
+2&4-\lambda&2\\
+-1&0&3-\lambda
+\end{pmatrix}.
+\]
+Then
+\[
+\det(A-\lambda I)
+=
+(4-\lambda)
+\det
+\begin{pmatrix}
+3-\lambda&-1\\
+-1&3-\lambda
+\end{pmatrix}
+=
+(4-\lambda)((3-\lambda)^2-1)
+=
+(4-\lambda)^2(2-\lambda).
+\]
+Hence
+\[
+\lambda_1=4,\qquad \lambda_2=2,
+\]
+and
+\[
+m_4=2,\qquad m_2=1.
+\]
+
+*** (ii) For \(\lambda=4\),
+\[
+V_4^A
+=
+\ker(A-4I)
+=
+\ker
+\begin{pmatrix}
+-1&0&-1\\
+2&0&2\\
+-1&0&-1
+\end{pmatrix}.
+\]
+The equations give
+\[
+x+z=0.
+\]
+Therefore
+\[
+V_4^A
+=
+\operatorname{span}
+\left\{
+\begin{pmatrix}
+1\\0\\-1
+\end{pmatrix},
+\begin{pmatrix}
+0\\1\\0
+\end{pmatrix}
+\right\}.
+\]
+For \(\lambda=2\),
+\[
+V_2^A
+=
+\ker(A-2I)
+=
+\ker
+\begin{pmatrix}
+1&0&-1\\
+2&2&2\\
+-1&0&1
+\end{pmatrix}.
+\]
+We get
+\[
+x-z=0,\qquad x+y+z=0.
+\]
+Thus \(x=z\) and \(y=-2x\). Therefore
+\[
+V_2^A
+=
+\operatorname{span}
+\left\{
+\begin{pmatrix}
+1\\-2\\1
+\end{pmatrix}
+\right\}.
+\]
+Here
+\[
+m_2=d_2=1,\qquad m_4=d_4=2.
+\]
+Hence \(A\) is diagonalizable.
+
+*** (iii) Let
+\[
+u_1=
+\begin{pmatrix}
+1\\-2\\1
+\end{pmatrix},
+\qquad
+u_2=
+\begin{pmatrix}
+1\\0\\-1
+\end{pmatrix},
+\qquad
+u_3=
+\begin{pmatrix}
+0\\1\\0
+\end{pmatrix}.
+\]
+Then
+\[
+P=(u_1,u_2,u_3)=
+\begin{pmatrix}
+1&1&0\\
+-2&0&1\\
+1&-1&0
+\end{pmatrix},
+\qquad
+D=
+\begin{pmatrix}
+2&0&0\\
+0&4&0\\
+0&0&4
+\end{pmatrix}.
+\]
+Also
+\[
+P^{-1}=
+\begin{pmatrix}
+\frac12&0&\frac12\\
+\frac12&0&-\frac12\\
+1&1&1
+\end{pmatrix}.
+\]
+Since \(A=PDP^{-1}\),
+\[
+A^n=PD^nP^{-1}.
+\]
+Therefore
+\[
+A^n=
+\begin{pmatrix}
+\frac{2^n+4^n}{2}&0&\frac{2^n-4^n}{2}\\
+-2^n+4^n&4^n&-2^n+4^n\\
+\frac{2^n-4^n}{2}&0&\frac{2^n+4^n}{2}
+\end{pmatrix}.
+\]
+
+** Matrix B
+
+*** (i) From the characteristic polynomial of \(B\),
+\[
+B-\lambda I=
+\begin{pmatrix}
+-\lambda&0&-8\\
+0&2-\lambda&0\\
+4&0&12-\lambda
+\end{pmatrix}.
+\]
+Thus
+\[
+\det(B-\lambda I)
+=
+(2-\lambda)
+\det
+\begin{pmatrix}
+-\lambda&-8\\
+4&12-\lambda
+\end{pmatrix}
+=
+(2-\lambda)(\lambda^2-12\lambda+32)
+=
+(2-\lambda)(\lambda-4)(\lambda-8).
+\]
+So
+\[
+\lambda_1=2,\qquad \lambda_2=4,\qquad \lambda_3=8.
+\]
+
+*** (ii) For \(\lambda=2\),
+\[
+V_2^B
+=
+\ker(B-2I)
+=
+\ker
+\begin{pmatrix}
+-2&0&-8\\
+0&0&0\\
+4&0&10
+\end{pmatrix}.
+\]
+The equations give
+\[
+x=0,\qquad z=0,
+\]
+so
+\[
+V_2^B
+=
+\operatorname{span}
+\left\{
+\begin{pmatrix}
+0\\1\\0
+\end{pmatrix}
+\right\}.
+\]
+For \(\lambda=4\),
+\[
+V_4^B
+=
+\ker(B-4I)
+=
+\ker
+\begin{pmatrix}
+-4&0&-8\\
+0&-2&0\\
+4&0&8
+\end{pmatrix}.
+\]
+Therefore
+\[
+x+2z=0,\qquad y=0.
+\]
+Thus
+\[
+V_4^B
+=
+\operatorname{span}
+\left\{
+\begin{pmatrix}
+-2\\0\\1
+\end{pmatrix}
+\right\}.
+\]
+For \(\lambda=8\),
+\[
+V_8^B
+=
+\ker(B-8I)
+=
+\ker
+\begin{pmatrix}
+-8&0&-8\\
+0&-6&0\\
+4&0&4
+\end{pmatrix}.
+\]
+We get
+\[
+x+z=0,\qquad y=0.
+\]
+Hence
+\[
+V_8^B
+=
+\operatorname{span}
+\left\{
+\begin{pmatrix}
+1\\0\\-1
+\end{pmatrix}
+\right\}.
+\]
+All algebraic multiplicities and each eigenvector geometric multiplicity are equal to 1, hence \(B\) is diagonalizable.
+
+*** (iii) To compute \(B^n\), form the matrix
+\[
+D=
+\begin{pmatrix}
+2&0&0\\
+0&4&0\\
+0&0&8
+\end{pmatrix}
+\]
+and
+\[
+P=
+\begin{pmatrix}
+0&-2&1\\
+1&0&0\\
+0&1&-1
+\end{pmatrix}.
+\]
+Then
+\[
+P^{-1}=
+\begin{pmatrix}
+0&1&0\\
+-1&0&-1\\
+-1&0&-2
+\end{pmatrix}.
+\]
+Since
+\[
+B=PDP^{-1},
+\]
+we get
+\[
+B^n=PD^nP^{-1}.
+\]
+Therefore
+\[
+B^n=
+\begin{pmatrix}
+0&-2&1\\
+1&0&0\\
+0&1&-1
+\end{pmatrix}
+\begin{pmatrix}
+2^n&0&0\\
+0&4^n&0\\
+0&0&8^n
+\end{pmatrix}
+\begin{pmatrix}
+0&1&0\\
+-1&0&-1\\
+-1&0&-2
+\end{pmatrix}.
+\]
+Since middle terms cancel,
+\[
+B^n=
+\begin{pmatrix}
+2\cdot4^n-8^n&0&2\cdot4^n-2\cdot8^n\\
+0&2^n&0\\
+8^n-4^n&0&2\cdot8^n-4^n
+\end{pmatrix}.
+\]
+
+* Exercise 5.2
+
+** Statement
+For \(n\in\mathbb N\), \(\K=\C\), determine the eigenvalues and eigenspaces of
+\[
+A=
+\begin{pmatrix}
+i&i&0&0&\cdots&0&0\\
+0&i&i&0&\cdots&0&0\\
+0&0&i&i&\cdots&0&0\\
+0&0&0&i&\ddots&0&0\\
+\vdots&\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+0&0&0&0&\cdots&i&i\\
+0&0&0&0&\cdots&0&i
+\end{pmatrix},
+\qquad
+i=\sqrt{-1}.
+\]
+
+** Solution
+Since the matrix is upper triangular,
+\[
+\det(A-\lambda I)=(i-\lambda)^n.
+\]
+Thus
+\[
+\lambda=i
+\]
+is the only eigenvalue.
+Now
+\[
+V_i^A=\ker(A-iI).
+\]
+But
+\[
+A-iI=
+\begin{pmatrix}
+0&i&0&\cdots&0&0\\
+0&0&i&\cdots&0&0\\
+0&0&0&\ddots&0&0\\
+\vdots&\vdots&\vdots&\ddots&i&0\\
+0&0&0&\cdots&0&i\\
+0&0&0&\cdots&0&0
+\end{pmatrix}.
+\]
+Therefore
+\[
+\begin{pmatrix}
+0&i&0&\cdots&0&0\\
+0&0&i&\cdots&0&0\\
+0&0&0&\ddots&0&0\\
+\vdots&\vdots&\vdots&\ddots&i&0\\
+0&0&0&\cdots&0&i\\
+0&0&0&\cdots&0&0
+\end{pmatrix}
+\begin{pmatrix}
+x_1\\x_2\\\vdots\\x_n
+\end{pmatrix}
+=0.
+\]
+This gives
+\[
+ix_j=0\Rightarrow x_j=0,\qquad j=2,\ldots,n.
+\]
+Hence
+\[
+V_i^A=
+\operatorname{span}
+\left\{
+\begin{pmatrix}
+1\\0\\\vdots\\0
+\end{pmatrix}
+\right\}.
+\]
+So
+\[
+\dim(V_i^A)=1=d_i,
+\]
+while
+\[
+m_i=n.
+\]
+Hence \(A\) is diagonalizable iff \(n=1\).
