@@ -4,7 +4,7 @@ Focus: rigorous definitions, theorem proof structure, examples/counterexamples, 
 
 ## Folders
 
-- `theory/` — definitions, theorem cards, concept maps.
+- `theory/` — definitions, theorems, concepts.
 - `problem_sheets/` — solved assignments and extra problems.
-- `coding/` — numerical experiments, visualizations, convergence checks.
-- `exam_prep/` — checklists, mock exams, formula-free understanding.
+- `coding/` — , visualizations of analysis concepts in julia/python
+- `exam_prep/` —  mock exams, formula-free understanding.
