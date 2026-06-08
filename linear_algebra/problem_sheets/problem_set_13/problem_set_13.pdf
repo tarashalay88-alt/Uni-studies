@@ -3,49 +3,569 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<< /Type /Pages /Kids [4 0 R 5 0 R 6 0 R 7 0 R] /Count 4 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
 endobj
 4 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
 endobj
 5 0 obj
-<< /Length 335 >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 9 0 R >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 11 0 R >>
+endobj
+8 0 obj
+<< /Length 1651 >>
 stream
 BT
-/F1 14 Tf
-50 780 Td
-20 TL
+/F1 9 Tf
+12 TL
+50 790 Td
 (Linear Algebra Problem Set 13) Tj
 T*
 (Taras Halay) Tj
 T*
 () Tj
 T*
-(PDF export placeholder for GitHub.) Tj
-T*
-(The full solution source is in the LaTeX file:) Tj
-T*
-( linear_algebra/problem_sheets/problem_set_13.tex) Tj
+(Exercise 5.15) Tj
 T*
 () Tj
 T*
-(Compile with: pdflatex problem_set_13.tex) Tj
+(Since A is orthogonal, assume lambda is an eigenvalue of A, then) Tj
+T*
+() Tj
+T*
+(    Ax = lambda x) Tj
+T*
+() Tj
+T*
+(for some x.) Tj
+T*
+() Tj
+T*
+(Then) Tj
+T*
+() Tj
+T*
+(    ||Ax|| = ||lambda x|| = ||x||) Tj
+T*
+() Tj
+T*
+(by definition of orthogonal matrix.) Tj
+T*
+() Tj
+T*
+(Then) Tj
+T*
+() Tj
+T*
+(    ||lambda x|| = |lambda| ||x|| = ||x||) Tj
+T*
+() Tj
+T*
+(implies) Tj
+T*
+() Tj
+T*
+(    |lambda| = 1 => lambda in {-1, 1}.) Tj
+T*
+() Tj
+T*
+(So the only possible eigenvalues are 1 and -1.) Tj
+T*
+() Tj
+T*
+(Since A is diagonalizable, then there exists a matrix P such that P is invertible, and) Tj
+T*
+() Tj
+T*
+(    A = P D P^{-1}.) Tj
+T*
+() Tj
+T*
+(As we know that det\(A\)=1, hence) Tj
+T*
+() Tj
+T*
+(    det\(A\) = det\(P D P^{-1}\)) Tj
+T*
+(           = det\(P\) det\(D\) det\(P^{-1}\)) Tj
+T*
+(           = det\(P\) det\(D\) 1/det\(P\) = det\(D\).) Tj
+T*
+() Tj
+T*
+(And since) Tj
+T*
+() Tj
+T*
+(    D = [ lambda_1   0      ]) Tj
+T*
+(        [ 0          lambda_2 ],) Tj
+T*
+() Tj
+T*
+(where lambda_1, lambda_2 are eigenvalues of A,) Tj
+T*
+() Tj
+T*
+(    det\(A\) = det\(D\) = lambda_1 lambda_2 = 1.) Tj
+T*
+() Tj
+T*
+(Since lambda_1, lambda_2 in {-1,1} and lambda_1 lambda_2 = 1, then) Tj
+T*
+() Tj
+T*
+(    D = I    or    D = -I.) Tj
+T*
+() Tj
+T*
+(If D = I, then) Tj
+T*
+() Tj
+T*
+(    A = P I P^{-1} = P P^{-1} = I.) Tj
+T*
+() Tj
+T*
+(If D = -I, then) Tj
+T*
+() Tj
+T*
+(    A = P\(-I\)P^{-1} = -P P^{-1} = -I.) Tj
+T*
+() Tj
+T*
+(Exercise 5.6) Tj
+T*
+() Tj
+T*
+(Since L is an isomorphism, L^{-1} exists.) Tj
+T*
+() Tj
+T*
+(Then consider) Tj
+T*
+() Tj
+T*
+ET
+endstream
+endobj
+9 0 obj
+<< /Length 1785 >>
+stream
+BT
+/F1 9 Tf
+12 TL
+50 790 Td
+(    M o L = L^{-1} o \(L o M\) o L.) Tj
+T*
+() Tj
+T*
+(Then, let's compute the characteristic polynomial of M o L.) Tj
+T*
+() Tj
+T*
+(    det\(M o L - lambda I\)) Tj
+T*
+(      = det\(L^{-1} o \(L o M\) o L - lambda I\)) Tj
+T*
+(      = det\(L^{-1} o \(L o M - lambda I\) o L\)) Tj
+T*
+(      = det\(L^{-1}\) det\(L o M - lambda I\) det\(L\).) Tj
+T*
+() Tj
+T*
+(Since L is invertible,) Tj
+T*
+() Tj
+T*
+(      = 1/det\(L\) det\(L o M - lambda I\) det\(L\)) Tj
+T*
+(      = det\(L o M - lambda I\).) Tj
+T*
+() Tj
+T*
+(Hence) Tj
+T*
+() Tj
+T*
+(    det\(L o M - lambda I\) = det\(M o L - lambda I\).) Tj
+T*
+() Tj
+T*
+(Exercise 5.8) Tj
+T*
+() Tj
+T*
+(Let) Tj
+T*
+() Tj
+T*
+(    A = [ p   -q ]) Tj
+T*
+(        [ q    p ],        p,q in R, q != 0.) Tj
+T*
+() Tj
+T*
+(    det\(A - lambda I\)) Tj
+T*
+(      = det [ p-lambda   -q       ]) Tj
+T*
+(            [ q           p-lambda]) Tj
+T*
+(      = \(p-lambda\)^2 + q^2 > 0) Tj
+T*
+() Tj
+T*
+(over R, since q != 0.) Tj
+T*
+() Tj
+T*
+(So there are no real eigenvalues over R.) Tj
+T*
+() Tj
+T*
+(Over C,) Tj
+T*
+() Tj
+T*
+(    \(p-lambda\)^2 + q^2) Tj
+T*
+(      = \(p-lambda-qi\)\(p-lambda+qi\)) Tj
+T*
+(      = \(\(p-qi\)-lambda\)\(\(p+qi\)-lambda\).) Tj
+T*
+() Tj
+T*
+(Hence) Tj
+T*
+() Tj
+T*
+(    lambda_1 = p - qi,      lambda_2 = p + qi.) Tj
+T*
+() Tj
+T*
+(Then A has two distinct eigenvalues, so it is diagonalizable over C.) Tj
+T*
+() Tj
+T*
+(For lambda_1 = p - qi,) Tj
+T*
+() Tj
+T*
+(    Ax = \(p-qi\)x) Tj
+T*
+() Tj
+T*
+(means) Tj
+T*
+() Tj
+T*
+(    [ p  -q ] [ x_1 ] = \(p-qi\) [ x_1 ]) Tj
+T*
+(    [ q   p ] [ x_2 ]          [ x_2 ].) Tj
+T*
+() Tj
+T*
+(So) Tj
+T*
+() Tj
+T*
+(    [ p x_1 - q x_2 ]   [ \(p-qi\)x_1 ]) Tj
+T*
+(    [ q x_1 + p x_2 ] = [ \(p-qi\)x_2 ].) Tj
+T*
+() Tj
+T*
+(Thus) Tj
+T*
+() Tj
+T*
+(    q x_2 = q i x_1 => x_2 = i x_1,) Tj
+T*
+() Tj
+T*
+ET
+endstream
+endobj
+10 0 obj
+<< /Length 1590 >>
+stream
+BT
+/F1 9 Tf
+12 TL
+50 790 Td
+(and) Tj
+T*
+() Tj
+T*
+(    q x_1 = -q i x_2 => x_1 = -i x_2.) Tj
+T*
+() Tj
+T*
+(Therefore) Tj
+T*
+() Tj
+T*
+(    V^A_{lambda_1} = span{ \(1, i\)^T }.) Tj
+T*
+() Tj
+T*
+(For lambda_2 = p + qi,) Tj
+T*
+() Tj
+T*
+(    Ax = \(p+qi\)x) Tj
+T*
+() Tj
+T*
+(gives us) Tj
+T*
+() Tj
+T*
+(    x_2 = -i x_1,       x_1 = i x_2.) Tj
+T*
+() Tj
+T*
+(Therefore) Tj
+T*
+() Tj
+T*
+(    V^A_{lambda_2} = span{ \(1, -i\)^T }.) Tj
+T*
+() Tj
+T*
+(Exercise 5.19) Tj
+T*
+() Tj
+T*
+(\(i\)) Tj
+T*
+() Tj
+T*
+(Let lambda in C be an eigenvalue of L. This means) Tj
+T*
+() Tj
+T*
+(    L\(x_0,x_1,x_2,...\) = lambda\(x_0,x_1,x_2,...\),) Tj
+T*
+() Tj
+T*
+(which means) Tj
+T*
+() Tj
+T*
+(    \(x_1,x_2,...\) = \(lambda x_0, lambda x_1, ...\).) Tj
+T*
+() Tj
+T*
+(Therefore) Tj
+T*
+() Tj
+T*
+(    x_{i+1} = lambda x_i) Tj
+T*
+() Tj
+T*
+(for all i = 0,...,infinity.) Tj
+T*
+() Tj
+T*
+(And this is exactly the definition of a complex infinite geometric sequence.) Tj
+T*
+() Tj
+T*
+(And surely, for every lambda in C, there exists a geometric sequence such that) Tj
+T*
+() Tj
+T*
+(    x_{i+1} = lambda x_i.) Tj
+T*
+() Tj
+T*
+(Hence every lambda in C is an eigenvalue of L.) Tj
+T*
+() Tj
+T*
+(The eigenspace V^L_lambda associated with lambda is all sequences \(x_n\)_{n=0}^infinity ) Tj
+T*
+(such that) Tj
+T*
+() Tj
+T*
+(    x_{i+1} = lambda x_i) Tj
+T*
+() Tj
+T*
+(for all i = 0,...,infinity.) Tj
+T*
+() Tj
+T*
+(If x_0 != 0, then) Tj
+T*
+() Tj
+T*
+(    x_n = lambda^n x_0.) Tj
+T*
+() Tj
+T*
+(So) Tj
+T*
+() Tj
+T*
+(    V^L_lambda = span{\(1, lambda, lambda^2, ...\)}.) Tj
+T*
+() Tj
+T*
+(\(ii\)) Tj
+T*
+() Tj
+T*
+(    R\(x_0,x_1,...\) = \(0,x_0,x_1,...\).) Tj
+T*
+ET
+endstream
+endobj
+11 0 obj
+<< /Length 1184 >>
+stream
+BT
+/F1 9 Tf
+12 TL
+50 790 Td
+() Tj
+T*
+(If lambda is an eigenvalue of R, then) Tj
+T*
+() Tj
+T*
+(    R\(x_0,x_1,...\) = lambda\(x_0,x_1,...\)) Tj
+T*
+(                   = \(0,x_0,x_1,...\).) Tj
+T*
+() Tj
+T*
+(Entrywise,) Tj
+T*
+() Tj
+T*
+(    lambda x_0 = 0,) Tj
+T*
+(    lambda x_1 = x_0,) Tj
+T*
+(    lambda x_2 = x_1.) Tj
+T*
+() Tj
+T*
+(So) Tj
+T*
+() Tj
+T*
+(    lambda x_i = x_{i-1}) Tj
+T*
+() Tj
+T*
+(for all i = 1,...,infinity.) Tj
+T*
+() Tj
+T*
+(Let x_{-1}=0.) Tj
+T*
+() Tj
+T*
+(Then let's consider two cases.) Tj
+T*
+() Tj
+T*
+(Case 1: lambda = 0. Then) Tj
+T*
+() Tj
+T*
+(    x = \(0,...,0\),) Tj
+T*
+() Tj
+T*
+(which contradicts that lambda is an eigenvalue of R.) Tj
+T*
+() Tj
+T*
+(Case 2: lambda != 0.) Tj
+T*
+() Tj
+T*
+(Then) Tj
+T*
+() Tj
+T*
+(    lambda x_0 = 0 => x_0 = 0.) Tj
+T*
+() Tj
+T*
+(Consequently,) Tj
+T*
+() Tj
+T*
+(    lambda x_1 = 0 => x_1 = 0,) Tj
+T*
+() Tj
+T*
+(and generally) Tj
+T*
+() Tj
+T*
+(    lambda x_i = 0) Tj
+T*
+() Tj
+T*
+(for all i = 0,...,infinity.) Tj
+T*
+() Tj
+T*
+(Hence) Tj
+T*
+() Tj
+T*
+(    x_i = 0) Tj
+T*
+() Tj
+T*
+(for all i = 0,...,infinity, which contradicts that x is an eigenvector.) Tj
+T*
+() Tj
+T*
+(Therefore, by two cases,) Tj
+T*
+() Tj
+T*
+(    sigma\(R\) = empty set.) Tj
+T*
 ET
 endstream
 endobj
 xref
-0 6
+0 12
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
-0000000115 00000 n 
-0000000241 00000 n 
-0000000311 00000 n 
+0000000133 00000 n 
+0000000201 00000 n 
+0000000327 00000 n 
+0000000453 00000 n 
+0000000580 00000 n 
+0000000707 00000 n 
+0000002409 00000 n 
+0000004245 00000 n 
+0000005887 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<< /Size 12 /Root 1 0 R >>
 startxref
-696
+7123
 %%EOF
