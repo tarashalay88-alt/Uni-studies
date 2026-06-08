@@ -1,0 +1,358 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+\newcommand{\Id}{\operatorname{Id}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\spec}{\sigma}
+
+\title{Linear Algebra Problem Set 13}
+\author{Taras Halay}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercise 5.15}
+
+Since $A$ is orthogonal, assume $\lambda$ is an eigenvalue of $A$, then
+\[
+Ax=\lambda x
+\]
+for some $x$.
+
+Then
+\[
+\|Ax\|=\|\lambda x\|=\|x\|
+\]
+by definition of orthogonal matrix.
+
+Then
+\[
+\|\lambda x\|=|\lambda|\|x\|=\|x\|
+\]
+implies
+\[
+|\lambda|=1 \Rightarrow \lambda\in\{-1,1\}.
+\]
+
+So the only possible eigenvalues are $1$ and $-1$.
+
+Since $A$ is diagonalizable, then there exists a matrix $P$ such that $P$ is invertible, and
+\[
+A=PDP^{-1}.
+\]
+
+As we know that $\det(A)=1$, hence
+\[
+\det(A)=\det(PDP^{-1})
+\]
+\[
+=\det(P)\det(D)\det(P^{-1})
+\]
+\[
+=\det(P)\det(D)\frac{1}{\det(P)}=\det(D).
+\]
+
+And since
+\[
+D=
+\begin{pmatrix}
+\lambda_1 & 0\\
+0 & \lambda_2
+\end{pmatrix},
+\]
+where $\lambda_1,\lambda_2$ are eigenvalues of $A$,
+\[
+\det(A)=\det(D)=\lambda_1\lambda_2=1.
+\]
+
+Since $\lambda_1,\lambda_2\in\{-1,1\}$ and $\lambda_1\lambda_2=1$, then
+\[
+D=I \quad \text{or} \quad D=-I.
+\]
+
+If $D=I$, then
+\[
+A=PIP^{-1}=PP^{-1}=I.
+\]
+
+If $D=-I$, then
+\[
+A=P(-I)P^{-1}=-PP^{-1}=-I.
+\]
+
+\section*{Exercise 5.6}
+
+Since $L$ is an isomorphism, $L^{-1}$ exists.
+
+Then consider
+\[
+M\circ L=L^{-1}\circ (L\circ M)\circ L.
+\]
+
+Then, let's compute the characteristic polynomial of $M\circ L$.
+
+\[
+\det(M\circ L-\lambda I)=
+\det\bigl(L^{-1}\circ (L\circ M)\circ L-\lambda I\bigr)
+\]
+\[
+=\det\bigl(L^{-1}\circ (L\circ M-\lambda I)\circ L\bigr)
+\]
+\[
+=\det(L^{-1})\det(L\circ M-\lambda I)\det(L).
+\]
+
+Since $L$ is invertible,
+\[
+=\frac{1}{\det(L)}\det(L\circ M-\lambda I)\det(L)
+=\det(L\circ M-\lambda I).
+\]
+
+Hence
+\[
+\det(L\circ M-\lambda I)=\det(M\circ L-\lambda I).
+\]
+
+\section*{Exercise 5.8}
+
+Let
+\[
+A=\begin{pmatrix}
+p & -q\\
+q & p
+\end{pmatrix},
+\qquad p,q\in\mathbb R,\quad q\neq0.
+\]
+
+\[
+\det(A-\lambda I)
+=\det\begin{pmatrix}
+p-\lambda & -q\\
+q & p-\lambda
+\end{pmatrix}
+\]
+\[
+=(p-\lambda)^2+q^2>0
+\]
+over $\mathbb R$, since $q\neq0$.
+
+So there are no real eigenvalues over $\mathbb R$.
+
+Over $\mathbb C$,
+\[
+(p-\lambda)^2+q^2
+=(p-\lambda-qi)(p-\lambda+qi)
+\]
+\[
+=((p-qi)-\lambda)((p+qi)-\lambda).
+\]
+
+Hence
+\[
+\lambda_1=p-qi,\qquad \lambda_2=p+qi.
+\]
+
+Then $A$ has two distinct eigenvalues, so it is diagonalizable over $\mathbb C$.
+
+For $\lambda_1=p-qi$,
+\[
+Ax=(p-qi)x
+\]
+means
+\[
+\begin{pmatrix}
+p & -q\\
+q & p
+\end{pmatrix}
+\begin{pmatrix}
+x_1\\
+x_2
+\end{pmatrix}
+=
+(p-qi)
+\begin{pmatrix}
+x_1\\
+x_2
+\end{pmatrix}.
+\]
+
+So
+\[
+\begin{pmatrix}
+px_1-qx_2\\
+qx_1+px_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+(p-qi)x_1\\
+(p-qi)x_2
+\end{pmatrix}.
+\]
+
+Thus
+\[
+qx_2=qix_1\Rightarrow x_2=ix_1,
+\]
+and
+\[
+qx_1=-qix_2\Rightarrow x_1=-ix_2.
+\]
+
+Therefore
+\[
+V^A_{\lambda_1}=\Span\left\{
+\begin{pmatrix}
+1\\
+i
+\end{pmatrix}
+\right\}.
+\]
+
+For $\lambda_2=p+qi$,
+\[
+Ax=(p+qi)x
+\]
+gives us
+\[
+x_2=-ix_1,
+\qquad
+x_1=ix_2.
+\]
+
+Therefore
+\[
+V^A_{\lambda_2}=\Span\left\{
+\begin{pmatrix}
+1\\
+-i
+\end{pmatrix}
+\right\}.
+\]
+
+\section*{Exercise 5.19}
+
+\subsection*{(i)}
+
+Let $\lambda\in\mathbb C$ be an eigenvalue of $L$. This means
+\[
+L(x_0,x_1,x_2,\ldots)=\lambda(x_0,x_1,x_2,\ldots),
+\]
+which means
+\[
+(x_1,x_2,\ldots)=(\lambda x_0,\lambda x_1,\ldots).
+\]
+
+Therefore
+\[
+x_{i+1}=\lambda x_i
+\]
+for all $i=0,\ldots,\infty$.
+
+And this is exactly the definition of a complex infinite geometric sequence.
+
+And surely, for every $\lambda\in\mathbb C$, there exists a geometric sequence such that
+\[
+x_{i+1}=\lambda x_i.
+\]
+
+Hence every $\lambda\in\mathbb C$ is an eigenvalue of $L$.
+
+The eigenspace $V^L_\lambda$ associated with $\lambda$ is all sequences $(x_n)_{n=0}^{\infty}$ such that
+\[
+x_{i+1}=\lambda x_i
+\]
+for all $i=0,\ldots,\infty$.
+
+If $x_0\neq0$, then
+\[
+x_n=\lambda^n x_0.
+\]
+
+So
+\[
+V^L_\lambda=\Span\{(1,\lambda,\lambda^2,\ldots)\}.
+\]
+
+\subsection*{(ii)}
+
+\[
+R(x_0,x_1,\ldots)=(0,x_0,x_1,\ldots).
+\]
+
+If $\lambda$ is an eigenvalue of $R$, then
+\[
+R(x_0,x_1,\ldots)=\lambda(x_0,x_1,\ldots)
+\]
+\[
+=(0,x_0,x_1,\ldots).
+\]
+
+Entrywise,
+\[
+\lambda x_0=0,
+\]
+\[
+\lambda x_1=x_0,
+\]
+\[
+\lambda x_2=x_1.
+\]
+
+So
+\[
+\lambda x_i=x_{i-1}
+\]
+for all $i=1,\ldots,\infty$.
+
+Let $x_{-1}=0$.
+
+Then let's consider two cases.
+
+Case 1: $\lambda=0$. Then
+\[
+x=(0,\ldots,0),
+\]
+which contradicts that $\lambda$ is an eigenvalue of $R$.
+
+Case 2: $\lambda\neq0$.
+
+Then
+\[
+\lambda x_0=0\Rightarrow x_0=0.
+\]
+
+Consequently,
+\[
+\lambda x_1=0\Rightarrow x_1=0,
+\]
+and generally
+\[
+\lambda x_i=0
+\]
+for all $i=0,\ldots,\infty$.
+
+Hence
+\[
+x_i=0
+\]
+for all $i=0,\ldots,\infty$, which contradicts that $x$ is an eigenvector.
+
+Therefore, by two cases,
+\[
+\spec(R)=\varnothing.
+\]
+
+\end{document}
