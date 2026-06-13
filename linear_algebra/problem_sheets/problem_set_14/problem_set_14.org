@@ -1,0 +1,393 @@
+#+TITLE: Problems 14 Algebra 2
+#+AUTHOR: Taras Halay
+#+OPTIONS: toc:nil
+#+LATEX_HEADER: \usepackage{amsmath,amssymb,mathtools}
+#+LATEX_HEADER: \newcommand{\im}{\operatorname{im}}
+#+LATEX_HEADER: \newcommand{\Span}{\operatorname{span}}
+#+LATEX_HEADER: \newcommand{\Ker}{\operatorname{ker}}
+#+LATEX_HEADER: \newcommand{\diag}{\operatorname{diag}}
+
+* Exercise 5.10
+
+\[
+L=\begin{pmatrix}3&2\\0&1\end{pmatrix}
+\begin{pmatrix}p&q\\0&r\end{pmatrix}.
+\]
+
+Let $\mathcal E$ be a basis of $E$.
+\[
+\mathcal E=\left\{
+\begin{pmatrix}1&0\\0&0\end{pmatrix},
+\begin{pmatrix}0&1\\0&0\end{pmatrix},
+\begin{pmatrix}0&0\\0&1\end{pmatrix}
+\right\}.
+\]
+
+\[
+[L]_{\mathcal E}^{\mathcal E}=\left(
+\left|\begin{matrix}3&0\\0&0\end{matrix}\right|_{\mathcal E},
+\left|\begin{matrix}0&3\\0&0\end{matrix}\right|_{\mathcal E},
+\left|\begin{matrix}0&2\\0&1\end{matrix}\right|_{\mathcal E}
+\right)
+=
+\begin{pmatrix}
+3&0&0\\
+0&3&2\\
+0&0&1
+\end{pmatrix}.
+\]
+
+\[
+\det\left([L]_{\mathcal E}^{\mathcal E}-\lambda I\right)
+=\det\begin{pmatrix}
+3-\lambda&0&0\\
+0&3-\lambda&2\\
+0&0&1-\lambda
+\end{pmatrix}
+=(3-\lambda)^2(1-\lambda).
+\]
+
+\[
+\lambda_1=3,\qquad \lambda_2=1.
+\]
+
+\[
+[L]_{\mathcal E}^{\mathcal E}
+\begin{pmatrix}p\\q\\r\end{pmatrix}
+=
+\begin{pmatrix}
+3&0&0\\
+0&3&2\\
+0&0&1
+\end{pmatrix}
+\begin{pmatrix}p\\q\\r\end{pmatrix}
+=
+\begin{pmatrix}3p\\3q+2r\\r\end{pmatrix}
+=\lambda\begin{pmatrix}p\\q\\r\end{pmatrix}.
+\]
+
+If $\lambda=3$, then $2r=0$, so $r=0$.
+\[
+V_3^{[L]_{\mathcal E}^{\mathcal E}}
+=\Span\left\{
+\begin{pmatrix}1\\0\\0\end{pmatrix}_{\mathcal E},
+\begin{pmatrix}0\\1\\0\end{pmatrix}_{\mathcal E}
+\right\}.
+\]
+
+For $\lambda=1$, $p=0$, $q=-r$.
+\[
+V_1^{[L]_{\mathcal E}^{\mathcal E}}
+=\Span\left\{
+\begin{pmatrix}0\\1\\-1\end{pmatrix}_{\mathcal E}
+\right\}.
+\]
+
+So,
+\[
+V_1\oplus V_3=E \Rightarrow L \text{ is diagonalizable.}
+\]
+
+* Exercise 5.14
+
+Using consequence of Theorem 5.18.
+
+$v_1,\ldots,v_n$ are eigenvectors assigned to
+\[
+\lambda_1\ne \cdots \ne \lambda_n.
+\]
+They are linearly independent.
+
+So they form a basis of $E$.
+
+\[
+\Rightarrow f \text{ is diagonalizable.}\quad \blacksquare
+\]
+
+* Exercise 5.16
+
+Since $P$ is projection,
+\[
+P^2=P,
+\]
+and
+\[
+S^2=I.
+\]
+
+
+1. Let $\lambda$ be an eigenvalue of $P$.
+
+Then
+\[
+Px=\lambda x
+\]
+for some $x\ne0$.
+
+Then
+\[
+P^2x=Px=\lambda x=P(\lambda x)=\lambda Px=\lambda^2x.
+\]
+
+So
+\[
+\lambda^2=\lambda,
+\]
+so
+\[
+\lambda\in\{0,1\}.
+\]
+
+1. Let $\mu$ be an eigenvalue of $S$.
+
+So
+\[
+Sy=\mu y
+\]
+for some $y\ne0$.
+
+Then
+\[
+S^2y=Iy=\mu Sy=\mu^2y.
+\]
+
+So
+\[
+\mu^2=1\Rightarrow \mu\in\{-1,1\}.
+\]
+
+1. Since $P$ is projection operator, it is defined with respect to some subspace, precisely $\im P$.
+
+So if $\lambda=0$ is eigenvalue of $P$,
+\[
+Px=0
+\]
+for some $x$, hence $x\in\Ker P$; in such case
+\[
+V_0^P=\Ker P.
+\]
+
+If $\lambda=1$ is eigenvalue,
+\[
+Py=y
+\]
+for some $y$.
+
+But we know that $P$ works like identity on subspace with respect to which $P$ has been defined.
+
+So
+\[
+V_1^P=\im P.
+\]
+
+By rank-nullity,
+\[
+V_1^P\oplus V_0^P=\Ker P\oplus\im P=E.
+\]
+
+Hence $P$ is diagonalizable.
+
+Now let's talk about $S$.
+
+Suppose $S$ is defined with respect to some subspace $U$, s.t.
+\[
+E=U\oplus F \Rightarrow \forall x\in E,\quad x=x_U+x_F,
+\]
+\[
+S(x)=x_U-x_F.
+\]
+
+Then for $\lambda=1$,
+\[
+Sx=x
+\]
+for some $x$, hence
+\[
+x\in U\Rightarrow V_1^S=U.
+\]
+
+For $\lambda=-1$,
+\[
+Sy=-y
+\]
+for some $y$, then
+\[
+y\in F\Rightarrow V_{-1}^S=F.
+\]
+
+So
+\[
+V_1^S\oplus V_{-1}^S=U\oplus F=E\Rightarrow S \text{ is diagonalizable.}
+\]
+
+
+* Exercise 5.17
+
+
+1.
+\[
+A\begin{pmatrix}x_n\\x_{n-1}\end{pmatrix}
+=
+\begin{pmatrix}x_{n+1}\\x_n\end{pmatrix}
+=
+\begin{pmatrix}x_n+x_{n-1}\\x_n\end{pmatrix}.
+\]
+
+So
+\[
+A=\begin{pmatrix}1&1\\1&0\end{pmatrix}.
+\]
+
+1.
+\[
+\det(A-\lambda I)=(1-\lambda)(-\lambda)-1=\lambda^2-\lambda-1=0.
+\]
+
+\[
+\lambda_1=\frac{1+\sqrt5}{2},\qquad
+\lambda_2=\frac{1-\sqrt5}{2}.
+\]
+
+Those eigenvalues are distinct, $A$ is diagonalizable.
+
+Let $\varphi=\lambda_1$ and $\psi=\lambda_2$.
+
+\[
+D=\begin{pmatrix}
+\frac{1+\sqrt5}{2}&0\\
+0&\frac{1-\sqrt5}{2}
+\end{pmatrix}.
+\]
+
+Let's find eigenbasis now.
+
+\[
+\begin{pmatrix}1&1\\1&0\end{pmatrix}
+\begin{pmatrix}x\\y\end{pmatrix}
+=
+\lambda\begin{pmatrix}x\\y\end{pmatrix}.
+\]
+
+So
+\[
+x=\lambda y
+\]
+and
+\[
+x+y=\lambda x.
+\]
+
+Take $y=1$, then $x=\lambda$ and
+\[
+\lambda+1=\lambda^2,
+\]
+which is true for eigenvalues.
+
+So eigenspace assigned to $\lambda$ is
+\[
+\Span\left\{\begin{pmatrix}\lambda\\1\end{pmatrix}\right\}.
+\]
+
+So
+\[
+V_{\lambda_1}^A=
+\Span\left\{\begin{pmatrix}\frac{1+\sqrt5}{2}\\1\end{pmatrix}\right\},
+\qquad
+V_{\lambda_2}^A=
+\Span\left\{\begin{pmatrix}\frac{1-\sqrt5}{2}\\1\end{pmatrix}\right\}.
+\]
+
+Then
+\[
+P=\begin{pmatrix}
+\frac{1+\sqrt5}{2}&\frac{1-\sqrt5}{2}\\
+1&1
+\end{pmatrix}
+\]
+is eigenbasis.
+
+So
+\[
+P^{-1}=\frac1{\det P}\operatorname{adj}(P).
+\]
+
+The adjugate is $C^T$, where $C$ is cofactor matrix.
+
+\[
+C=\begin{pmatrix}
+1&-1\\
+-\psi&\varphi
+\end{pmatrix}
+\Rightarrow
+\operatorname{adj}(P)=
+\begin{pmatrix}
+1&-\psi\\
+-1&\varphi
+\end{pmatrix}.
+\]
+
+Also
+\[
+\det P=\sqrt5.
+\]
+
+So
+\[
+P^{-1}=\frac1{\sqrt5}
+\begin{pmatrix}
+1&-\psi\\
+-1&\varphi
+\end{pmatrix}.
+\]
+
+Then
+\[
+A=PDP^{-1}.
+\]
+
+Hence
+\[
+A^n\begin{pmatrix}x_1\\x_0\end{pmatrix}
+=
+(PD^nP^{-1})\begin{pmatrix}x_1\\x_0\end{pmatrix}.
+\]
+
+\[
+=\frac1{\sqrt5}
+\begin{pmatrix}\varphi&\psi\\1&1\end{pmatrix}
+\begin{pmatrix}\varphi^n&0\\0&\psi^n\end{pmatrix}
+\begin{pmatrix}1&-\psi\\-1&\varphi\end{pmatrix}
+\begin{pmatrix}x_1\\x_0\end{pmatrix}
+\]
+
+\[
+=\frac1{\sqrt5}
+\begin{pmatrix}
+\varphi^{n+1}&\psi^{n+1}\\
+\varphi^n&\psi^n
+\end{pmatrix}
+\begin{pmatrix}1&-\psi\\-1&\varphi\end{pmatrix}
+\begin{pmatrix}x_1\\x_0\end{pmatrix}
+\]
+
+\[
+=\frac1{\sqrt5}
+\begin{pmatrix}
+\varphi^{n+1}-\psi^{n+1} & -\psi\varphi^{n+1}+\varphi\psi^{n+1}\\
+\varphi^n-\psi^n & -\psi\varphi^n+\varphi\psi^n
+\end{pmatrix}
+\begin{pmatrix}x_1\\x_0\end{pmatrix}
+\]
+
+\[
+=\frac1{\sqrt5}
+\begin{pmatrix}
+x_1(\varphi^{n+1}-\psi^{n+1})+x_0(-\psi\varphi^{n+1}+\varphi\psi^{n+1})\\
+x_1(\varphi^n-\psi^n)+x_0(-\psi\varphi^n+\varphi\psi^n)
+\end{pmatrix}.
+\]
+
+So,
+\[
+x_n=\frac{x_1(\varphi^n-\psi^n)+x_0(-\psi\varphi^n+\varphi\psi^n)}{\sqrt5}.
+\]
